@@ -1,0 +1,32 @@
+<div class="firstName-details" [(ngModel)]="data.id" ngDefaultControl>
+    <p>Id: {{data.id}}</p>
+    </div>
+
+<div class="firstName-details" [(ngModel)]="data.lastName" ngDefaultControl>
+<p>Фамилия: {{data.lastName}}</p>
+</div>
+
+<div  [(ngModel)]="data.firstName" ngDefaultControl>
+    <p> <strong>Имя:</strong>  {{data.firstName}}</p>
+    
+  </div>
+
+  <div  [(ngModel)]="data.middleName" ngDefaultControl>
+      <p>Отчество: {{data.middleName}}</p>
+      
+    </div>
+
+    <div  [(ngModel)]="data.birthday" ngDefaultControl>
+        <p>Дата рождения: {{data.birthday | date:'dd.MM.yyyy' }}</p>
+        
+      </div>
+
+      <div  [(ngModel)]="data.gender" ngDefaultControl>
+          <p>Пол: {{data.gender}}</p>
+          
+        </div>
+
+        <div  [(ngModel)]="data.phoneNumber" ngDefaultControl>
+            <p>Тел.номер: {{data.phoneNumber}}</p>
+            
+          </div>

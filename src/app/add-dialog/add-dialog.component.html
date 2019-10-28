@@ -1,0 +1,60 @@
+<form > 
+  
+    <div mat-dialog-content class="creat-container-dialog">
+      <div class="form-group" [formGroup]="formTempl">
+          <mat-form-field >
+              <p>Фамилия</p>
+            <input matInput  [(ngModel)]="data.lastName" formControlName="lastName">
+            <mat-error *ngIf="formTempl.get('lastName').invalid">Invalid form</mat-error>
+          </mat-form-field>
+         
+      </div>
+      
+    <div class="form-group" [formGroup]="formTempl">
+        <mat-form-field>
+            <p>Имя</p>
+            <input matInput  [(ngModel)]="data.firstName" formControlName="firstName">
+            {{data.firstname}}
+          </mat-form-field>
+    </div>
+      
+    <div class="form-group" [formGroup]="formTempl">
+        <mat-form-field>
+            <p>Отчество</p>
+            <input matInput  [(ngModel)]="data.middleName"  formControlName="middleName">
+            
+          </mat-form-field>
+    </div>
+   
+    <div class="form-group" [formGroup]="formTempl">
+        <mat-form-field>
+            <p>Дата Рождения</p>
+          <input matInput [matDatepicker]="picker" [(ngModel)]="data.birthday" formControlName="birthday">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+    </div>
+        
+  <div class="form-group" [formGroup]="formTempl">
+      <mat-form-field>
+          <p>Пол</p>
+          <input matInput [(ngModel)]="data.gender" formControlName="gender">
+          
+        </mat-form-field>
+  </div>
+        
+    <div class="form-group" [formGroup]="formTempl">
+        <mat-form-field>
+            <p>Номер телефона</p>
+            <input matInput [(ngModel)]="data.phoneNumber" formControlName="phoneNumber">
+            
+          </mat-form-field>
+    </div>
+          
+    
+    </div>
+    
+    <button mat-button color="warn" (click)="cancel()">Отменить</button>
+    <button mat-button color="primary" [disabled]="!formTempl.valid" (click)="addRow(data)">Добавить</button>
+  
+</form>
