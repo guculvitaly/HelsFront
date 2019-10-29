@@ -48,7 +48,7 @@ export class CoreModuleComponent implements OnInit {
   }
 
   Search(text: string) {
-
+console.log('search text', text);
     return this._service.search(text).subscribe(data => {
       this.dataSource = data;
     });
