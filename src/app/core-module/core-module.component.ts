@@ -48,7 +48,7 @@ export class CoreModuleComponent implements OnInit {
   }
 
   Search(text: string) {
-console.log('search text', text);
+
     return this._service.search(text).subscribe(data => {
       this.dataSource = data;
     });
@@ -72,8 +72,7 @@ console.log('search text', text);
       data: element
     });
     dialogRef.afterClosed().subscribe(res => {
-      console.log('res updated', res);
-      console.log('this data source', this.dataSource);
+     
       if (res !== undefined) {
         this.dataSource.forEach(item => {
           if (item.id === res.data.id) {
@@ -88,7 +87,7 @@ console.log('search text', text);
 
 
      });
-    console.log('click item', action);
+    
 }
 
 
@@ -100,7 +99,7 @@ createRowDialog(element: any) {
   });
 
   dialogRef.afterClosed().subscribe(res => {
-    console.log('after closed', res);
+  
     if ( res !== undefined) {
       
       this.dataSource.push(res.data);
@@ -117,7 +116,7 @@ addRowData(action, obj) {
   const dialogRef = this.dialog.open(DialogComponent, {
     width: '320px',
     data: {name: action}
-   // data: action
+   
   });
   console.log('action', action);
 }
@@ -143,7 +142,9 @@ onChangeInput(text: any) {
   // tslint:disable-next-line: align
   } if ( text.length < 1 ) {
     this.initAllPacients();
-  } 
+  } if (text.length > 256) {
+      alert('MaxLenght 256 symbols!');
+  }
 
 }
 
@@ -153,7 +154,4 @@ inputFormSearch() {
   });
 }
 
-openDetails(element: any): void {
-  console.log('open element', element);
-}
 }

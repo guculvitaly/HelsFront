@@ -1,9 +1,9 @@
 <div class="firstName-details" [(ngModel)]="data.id" ngDefaultControl>
-    <p>Id: {{data.id}}</p>
+    <p><strong>Id: </strong> {{data.id}}</p>
     </div>
 
 <div class="firstName-details" [(ngModel)]="data.lastName" ngDefaultControl>
-<p>Фамилия: {{data.lastName}}</p>
+<p><strong>Фамилия: </strong> {{data.lastName}}</p>
 </div>
 
 <div  [(ngModel)]="data.firstName" ngDefaultControl>
@@ -12,21 +12,21 @@
   </div>
 
   <div  [(ngModel)]="data.middleName" ngDefaultControl>
-      <p>Отчество: {{data.middleName}}</p>
+      <p><strong>Отчество: </strong> {{data.middleName}}</p>
       
     </div>
 
     <div  [(ngModel)]="data.birthday" ngDefaultControl>
-        <p>Дата рождения: {{data.birthday | date:'dd.MM.yyyy' }}</p>
+        <p><strong>Дата рождения: </strong> {{data.birthday | date:'dd.MM.yyyy' }}</p>
         
       </div>
 
       <div  [(ngModel)]="data.gender" ngDefaultControl>
-          <p>Пол: {{data.gender}}</p>
+          <p><strong>Пол: </strong> {{data.gender}}</p>
           
         </div>
 
         <div  [(ngModel)]="data.phoneNumber" ngDefaultControl>
-            <p>Тел.номер: {{data.phoneNumber}}</p>
+            <p><strong>Тел.номер: </strong> {{data.phoneNumber}}</p>
             
           </div>
