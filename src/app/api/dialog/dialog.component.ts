@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Pacient } from 'src/app/model/Pacient';
 import { CoreServiceService } from 'src/app/core-module/core-service.service';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-dialog',
@@ -13,12 +14,15 @@ export class DialogComponent implements OnInit {
   data: any;
   action: string;
 
+  editForm: FormGroup;
+
     constructor(
       public dialogRef: MatDialogRef<DialogComponent>,
-      @Inject(MAT_DIALOG_DATA) public pacient: Pacient, private _service: CoreServiceService) {
+      @Inject(MAT_DIALOG_DATA) public pacient: Pacient, private _service: CoreServiceService, private fb: FormBuilder) {
         console.log('retrive to diaolog', this.pacient);
         this.data = {...pacient};
         this.action = this.data;
+        this.validateEditForm();
       }
 
  
@@ -43,4 +47,17 @@ export class DialogComponent implements OnInit {
     this.dialogRef.close();
   }
   
+  validateEditForm(){
+    this.editForm = this.fb.group({
+      lastName: new FormControl('', [Validators.required,
+             Validators.minLength(4), Validators.maxLength(128) ]),
+      firstName: new FormControl('', [Validators.required,
+        Validators.minLength(4), Validators.maxLength(128) ]),
+      gender: new FormControl(),
+      birthday: new FormControl(),
+      phoneNumber: new FormControl('', [Validators.required, Validators.pattern('^-?[0-9]\\d*(\\.\\d{1,2})?$')], ),
+      middleName: new FormControl('', [Validators.required]),
+    });
+  }
+
 }

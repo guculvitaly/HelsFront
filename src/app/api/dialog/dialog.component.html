@@ -1,46 +1,59 @@
 
 <div mat-dialog-content>
-  <mat-form-field >
-      <p>Фамилия</p>
-    <input matInput [(ngModel)]="data.lastName">
-    
-  </mat-form-field>
+  <div class="form-group" [formGroup]="editForm" >
+      <mat-form-field >
+          <p>Фамилия</p>
+        <input matInput [(ngModel)]="data.lastName" formControlName="lastName">
+        <mat-error *ngIf="editForm.get('lastName').invalid">Invalid lastName</mat-error>
+      </mat-form-field>
+  </div>
+  
+<div class="form-group" [formGroup]="editForm">
+    <mat-form-field>
+        <p>Имя</p>
+        <input matInput [(ngModel)]="data.firstName" formControlName="firstName">
+        {{data.firstname}}
+        <mat-error *ngIf="editForm.get('firstName').invalid">Invalid firstName</mat-error>
+      </mat-form-field>
+</div>
+  
+<div class="form-group" [formGroup]="editForm">
+    <mat-form-field>
+        <p>Отчество</p>
+        <input matInput [(ngModel)]="data.middleName" formControlName="middleName">
+        <mat-error *ngIf="editForm.get('middleName').invalid">Invalid middleName</mat-error>
+      </mat-form-field>
+</div>
 
-  <mat-form-field>
-      <p>Имя</p>
-      <input matInput [(ngModel)]="data.firstName">
-      {{data.firstname}}
+<div class="form-group" [formGroup]="editForm">
+    <mat-form-field>
+        <p>Дата Рождения</p>
+      <input matInput [matDatepicker]="picker" [(ngModel)]="data.birthday" ngDefaultControl formControlName="birthday">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="editForm.get('birthday').invalid">Invalid birthday</mat-error>
     </mat-form-field>
+</div>
 
-  <mat-form-field>
-    <p>Отчество</p>
-    <input matInput [(ngModel)]="data.middleName">
-    
-  </mat-form-field>
-
-  <mat-form-field>
-      <p>Дата Рождения</p>
-    <input matInput [matDatepicker]="picker" [(ngModel)]="data.birthday" ngDefaultControl>
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>
-
+<div class="form-group" [formGroup]="editForm" > 
     <mat-form-field>
         <p>Пол</p>
-        <input matInput [(ngModel)]="data.gender">
+        <input matInput [(ngModel)]="data.gender" formControlName="gender">
         
       </mat-form-field>
+</div>  
 
+  <div class="form-group" [formGroup]="editForm">
       <mat-form-field>
           <p>Номер телефона</p>
-          <input matInput [(ngModel)]="data.phoneNumber">
-          
+          <input matInput [(ngModel)]="data.phoneNumber" formControlName="phoneNumber">
+          <mat-error *ngIf="editForm.get('phoneNumber').invalid">Invalid phoneNumber</mat-error>
         </mat-form-field>
+  </div>  
+
+      
 
 </div>
 
-<ng-template #elseTemplate>
-    
-  </ng-template>
 <button mat-button color="warn" (click)="cancelEdit()">Отменить</button>
-<button mat-button color="primary" (click)="doAction()">Обновить</button>
+<button mat-button color="primary" (click)="doAction()" [disabled]="!editForm.valid">Обновить</button>
